@@ -1,3 +1,3 @@
-void Procura_primo(int Posicao);
+int Procura_primo(int Posicao);
 
-void Procura_posicao(int Primo);
+int Procura_posicao(int Primo);
