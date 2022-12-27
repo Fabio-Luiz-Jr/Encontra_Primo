@@ -1,5 +1,7 @@
+void Imprime(int Op, int Primo, int Posicao);
+
 int *Aloca_memoria(int Size);
 
-int Procura_primo(int Posicao);
+void Procura_primo(int Posicao);
 
-int Procura_posicao(int Primo);
+void Procura_posicao(int Primo);
