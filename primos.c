@@ -26,9 +26,11 @@ void Procura_primo(int Posicao){
 
     if(Posicao < 1){
         printf("Posição inválida.");
-        exit(0);
+        return;
     }
+
     Array_primos = Aloca_memoria(Posicao);
+
     for(int i = 2, p = 0; p < Posicao; i++){
         if(p * 100.00 / Posicao > pct){
             pct = p * 100.00 / Posicao;
@@ -55,4 +57,38 @@ void Procura_primo(int Posicao){
 }
 
 void Procura_posicao(int Primo){
+    int Posicao = 0, *Array_primos;
+
+    if(Primo < 2){
+        printf("%d Não é primo.\n", Primo);
+        return;
+    }
+
+    Array_primos = Aloca_memoria(Primo / 2 + 1);
+
+    for(int i = 2, p = 0; i <= Primo; i++){
+        if(i > 2)
+            for(int j = 0; j < p; j++){
+                if(i % Array_primos[j] == 0)
+                    break;
+                else if(j + 1 == p){
+                    Array_primos[p] = i;
+                    p++;
+                    if(i == Primo)
+                        Posicao = p;
+                }
+            }
+        else{
+            Array_primos[p] = i;
+            p++;
+            if(i == Primo)
+                Posicao = p;
+        }
+    }
+    free(Array_primos);
+
+    if(Posicao > 0)
+        Imprime(0, Primo, Posicao);
+    else
+        printf("O número %d não é primo.\n", Primo);
 }
