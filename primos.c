@@ -31,17 +31,17 @@ void Procura_primo(int Posicao){
 
     Array_primos = Aloca_memoria(Posicao);
 
-    for(int i = 2, p = 0; p < Posicao; i++){
+    for(int i = 2, p = 0; p < Posicao; i += 2){
         if(p * 100.00 / Posicao > pct){
             pct = p * 100.00 / Posicao;
             printf("%.2lf%% concluido.\n", pct);
         }
 
         if(i > 2)
-            for(int j = 0; j < p; j++){
+            for(int j = 0, aux = p; j < aux; j++){
                 if(i % Array_primos[j] == 0)
                     break;
-                else if(j + 1 == p){
+                else if(j + 1 == aux){
                     Array_primos[p] = i;
                     p++;
                 }
@@ -49,6 +49,7 @@ void Procura_primo(int Posicao){
         else{
             Array_primos[p] = i;
             p++;
+            i--;
         }
     }
     Primo = Array_primos[Posicao - 1];
@@ -80,7 +81,7 @@ void Procura_posicao(int Primo){
                     i = Primo + 1;
                     break;
                 }
-                else if(j + 1 == p){
+                else if(j + 1 == aux){
                     Array_primos[p] = i;
                     p++;
                     if(i == Primo)
